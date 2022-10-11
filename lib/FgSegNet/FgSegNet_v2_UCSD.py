@@ -139,7 +139,7 @@ def main(data_path: Path, label_path: Path, epochs: int, lr: float):
                                     WEIGHTS_PATH_NO_TOP, cache_subdir='models',
                                     file_hash='6d6bbae143d832006294945121d1f1fc')
     
-    mdl_path = Path(__file__).parents[0].parent / "weights" / f"{int(time.time())}.h5"
+    mdl_path = Path(__file__).parent.parent.parent / "data" / "weights" / f"{int(time.time())}.h5"
     
     results = getData(data_path, label_path)
     train(results, str(mdl_path), vgg_weights_path, epochs, lr)
