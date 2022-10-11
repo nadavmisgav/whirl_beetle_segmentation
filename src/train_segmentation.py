@@ -15,8 +15,8 @@ if __name__ == "__main__":
     parser = ArgumentParser()
     parser.add_argument("data_path", help="path to cropped frames", type=Path)
     parser.add_argument("label_path", help="path to labels", type=Path)
-    parser.add_argument("-e", "--epochs", help="number of epochs", default=10)
-    parser.add_argument("--lr", help="learning rate", default=1e-4)
+    parser.add_argument("-e", "--epochs", help="number of epochs", default=20, type=int)
+    parser.add_argument("--lr", help="learning rate", default=1e-4, type=float)
     args = parser.parse_args()
 
     FgSegNet.main(args.data_path, args.label_path, args.epochs, args.lr)

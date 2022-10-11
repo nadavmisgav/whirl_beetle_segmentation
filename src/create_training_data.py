@@ -48,8 +48,8 @@ if __name__ == "__main__":
                         default=300, help="height of box")
     parser.add_argument("--width", type=int,
                         default=300, help="width of box")
-    parser.add_argument("-b", "--batch", help="Batch size for processing", default=200)
-    parser.add_argument("-c", "--count", help="Number of batches to create", default=1)
+    parser.add_argument("-b", "--batch", help="Batch size for processing", default=200, type=int)
+    parser.add_argument("-c", "--count", help="Number of batches to create", default=1, type=int)
     args = parser.parse_args()
 
     main(args.video_path, args.height, args.width, args.batch, args.count)
