@@ -1,5 +1,7 @@
 # Whirl Beetle Segmentation
 Video segmentation of a whirl beetle and the ripples it creates.
+![segmentation_example](./combined_gif_final.gif)
+
 ## Getting started
 ### Prerequisite
 
