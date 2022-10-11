@@ -58,3 +58,27 @@ def get_frames(video_path: Path, batch_size=200, max_frames=200, transform=lambd
             print(f"reached max_frames={max_frames} stopping processing")
             break
         images = []
+
+def calc_velocity_angle(pt2, pt1):
+    col1, row1 = pt1
+    col2, row2 = pt2
+
+    velocity_col = col2 - col1
+    velocity_row = row2 - row1
+
+    angle = np.arctan2(velocity_row, velocity_col)
+    return angle
+
+
+def chunks(lst, n):
+    """Yield successive n-sized chunks from lst."""
+    for i in range(0, len(lst), n):
+        yield lst[i:i + n]
+
+def draw_arrow(img, pt, angle, size, color, thickness):
+    col, row = pt
+    next_row = row + np.sin(angle)*size/2
+    next_col = col + np.cos(angle)*size/2
+
+    cv2.arrowedLine(img, (int(col), int(row)), (int(next_col),
+                    int(next_row)), color=color, thickness=thickness)

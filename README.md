@@ -10,6 +10,30 @@ pip install -U pip
 pip install -r requirements.txt
 ```
 
+### Segmenting
+To segment a video use our `src/segment_whirl_beetle.py` it accepts a video path and a weight path (there is pretrained weights in `data/weights/pretrained.h5`) the output segmented video will be saved in `data/segmented` folder.
+
+```text
+usage: segment_whirl_beetle.py [-h] [--height HEIGHT] [--width WIDTH]
+                               [-b BATCH] [-c COUNT]
+                               video_path weights_path
+
+positional arguments:
+  video_path            path to video
+  weights_path          path to weights
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --height HEIGHT       height of box
+  --width WIDTH         width of box
+  -b BATCH, --batch BATCH
+                        Batch size for processing
+  -c COUNT, --count COUNT
+                        Number of batches to create
+```
+
+> Note not the entire video will be processed only the amount of batches specified
+
 ## Creating training data
 
 ### Generate frames
