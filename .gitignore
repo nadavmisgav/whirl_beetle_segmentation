@@ -4,3 +4,4 @@ __pycache__/
 *.avi
 *.h5
 !data/weights/pretrained.h5
+!data/videos/example.avi
