@@ -17,7 +17,7 @@ To segment a video use our `src/segment_whirl_beetle.py` it accepts a video path
 
 ```text
 usage: segment_whirl_beetle.py [-h] [--height HEIGHT] [--width WIDTH]
-                               [-b BATCH] [-c COUNT]
+                               [-b BATCH] [-c COUNT] [--save-eval]
                                video_path weights_path
 
 positional arguments:
@@ -32,6 +32,7 @@ optional arguments:
                         Batch size for processing
   -c COUNT, --count COUNT
                         Number of batches to create
+  --save-eval           Save frames for evaluation
 ```
 
 > Note not the entire video will be processed only the amount of batches specified

@@ -84,7 +84,8 @@ def preprocess_video(video_path: Path, mask_height: int, mask_width: int, batch_
 
 
 
-def process_video(video_writer, weight_path, orig_frames, frames, centers, velocities):
+def process_video(video_writer, weight_path, orig_frames, frames, centers, velocities, eval_output = None):
+    idx = 0
     for chunk in chunks(list(zip(frames, centers, velocities, orig_frames)), 50):
         chunk_x, chunk_center, chunk_velocity, chunk_orig = zip(*chunk)
         prob = predict(weight_path, np.asarray(chunk_x))
@@ -143,16 +144,25 @@ def process_video(video_writer, weight_path, orig_frames, frames, centers, veloc
                 draw_arrow(f_orig, (col, row), velocity, 50, (0, 255, 0), 2)
 
             video_writer.write(f_orig)
+            if eval_output is not None:
+                output = eval_output / f"frame{str(idx).zfill(5)}.jpg"
+                cv2.imwrite(str(output), f)
+                idx += 1
+
     video_writer.release()
 
-def main(video_path: Path, weight_path: Path, height: int, width: int, batch_size: int, num_batches: int):
+def main(video_path: Path, weight_path: Path, height: int, width: int, batch_size: int, num_batches: int, save_eval):
     orig_frames, frames, centers, velocities = preprocess_video(video_path, height, width, batch_size, num_batches)
+    eval_output = None
     DATA_DIR = Path(__file__).parent.parent / "data" / "segmented"
     DATA_DIR.mkdir(exist_ok=True)
 
     output_path = DATA_DIR / f"{video_path.stem}_segemented.avi"
     cropped_video = cv2.VideoWriter(str(output_path), cv2.VideoWriter_fourcc(*'XVID'), 30, orig_frames[0].shape[:2], True)
-    process_video(cropped_video, weight_path, orig_frames, frames, centers, velocities)
+    if save_eval:
+        eval_output = Path(__file__).parent.parent / "data" / f"{video_path.stem}_eval_frames"
+        eval_output.mkdir()
+    process_video(cropped_video, weight_path, orig_frames, frames, centers, velocities, eval_output)
     print(f"Done! Segmented video written to {output_path}")
 
 
@@ -166,6 +176,7 @@ if __name__ == "__main__":
                         default=300, help="width of box")
     parser.add_argument("-b", "--batch", help="Batch size for processing", default=200)
     parser.add_argument("-c", "--count", help="Number of batches to create", default=1)
+    parser.add_argument("--save-eval", help="Save frames for evaluation", action="store_true")
     args = parser.parse_args()
 
-    main(args.video_path, args.weights_path, args.height, args.width, args.batch, args.count)
+    main(args.video_path, args.weights_path, args.height, args.width, args.batch, args.count, args.save_eval)
