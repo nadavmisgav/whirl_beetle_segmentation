@@ -40,8 +40,8 @@ def transform_image(img: np.ndarray):
     return img
 
 
-def get_frames(video_path, batch_size=200, max_frames=200, transform=lambda img: img):
-    cap = cv2.VideoCapture(video_path)
+def get_frames(video_path: Path, batch_size=200, max_frames=200, transform=lambda img: img):
+    cap = cv2.VideoCapture(str(video_path))
     images = []
 
     success, image = cap.read()
@@ -89,12 +89,8 @@ def crop_video(orig_images, image_3d, height, width):
 
 
 def main(video_path: Path, height: int, width: int, batch_size: int, num_batches: int):
-    OUTPUT_DIR = Path(__file__).parent / "data" / (video_path.stem + "_frames")
-    try:
-        OUTPUT_DIR.mkdir()
-    except OSError:
-        print(f"Path {OUTPUT_DIR} exists, delete it first")
-        return
+    OUTPUT_DIR = Path(__file__).parent.parent / "data" / (video_path.stem + "_frames")
+    OUTPUT_DIR.mkdir()
 
     c = count()
     for images, image_3d in get_frames(video_path, batch_size=batch_size, max_frames=batch_size*num_batches, transform=transform_image):

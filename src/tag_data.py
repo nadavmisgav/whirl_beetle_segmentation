@@ -34,7 +34,6 @@ def tag_image(image_path: Path):
             cv.circle(mask, (x, y), brush_size, (255, 255, 255), -1)
 
     # read image from path and add callback
-    name = image_path.stem
     orig_image = cv.imread(str(image_path))
     img = cv.resize(orig_image, (1280, 720))
 
@@ -60,22 +59,21 @@ def tag_image(image_path: Path):
     # orig_image = cv.resize(orig_image, (128, 128))
     mask = cv.resize(mask, orig_image.shape[:2])
 
-    cv.imwrite(str(TAG_ROOT / "masked" / f"{name[:-4]}_masked.jpg"), mask)
-    cv.imwrite(str(TAG_ROOT / "cropped" / name), orig_image)
+    cv.imwrite(str(TAG_ROOT / "masked" / f"{image_path.stem}_masked.jpg"), mask)
+    cv.imwrite(str(TAG_ROOT / "cropped" / image_path.parts[-1]), orig_image)
 
     cv.destroyAllWindows()
 
 
 print("Creating directories")
-TAG_ROOT = Path(__file__).parent / "data" / "tag"
+TAG_ROOT = Path(__file__).parent.parent / "data" / "tag"
 (TAG_ROOT / "cropped").mkdir(exist_ok=True)
 (TAG_ROOT / "data").mkdir(exist_ok=True)
 (TAG_ROOT / "masked").mkdir(exist_ok=True)
 (TAG_ROOT / "tagged").mkdir(exist_ok=True)
-os.chdir(TAG_ROOT)
-
 
 for image in tqdm((TAG_ROOT / "data").glob("*.jpg")):
+    print(str(image))
     tag_image(image)
     print(image)
-    shutil.move(str(image.resolve())., "tagged")
+    shutil.move(str(image.resolve()), str(TAG_ROOT / "tagged"))

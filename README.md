@@ -10,8 +10,33 @@ pip install -U pip
 pip install -r requirements.txt
 ```
 
-## Tagging
-To tag the ripples one can you our tagging tool `src/tag_data.py`, to use the tool place images to tag inside the `data/tag/data` folder. Run `src/tag_data.py` and use the following keys,
+## Creating training data
+
+### Generate frames
+To generate frames from a given video use our tool `src/create_training_data.py` it accepts a video path and frames will be saved in the `data/<video_name>_frames` folder.
+
+```text
+usage: create_training_data.py [-h] [--height HEIGHT] [--width WIDTH]
+                               [-b BATCH] [-c COUNT]
+                               video_path
+
+positional arguments:
+  video_path            path to video
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --height HEIGHT       height of box
+  --width WIDTH         width of box
+  -b BATCH, --batch BATCH
+                        Batch size for processing
+  -c COUNT, --count COUNT
+                        Number of batches to create
+```
+
+> Note that not many frames are needed for training and this was tested only for the default HEIGHT and WIDTH.
+
+### Tagging
+To tag the ripples use our tagging tool `src/tag_data.py`, to use the tool place images to tag inside the `data/tag/data` folder. Run `src/tag_data.py` and use the following keys,
 1. `MOUSE-L` - Draw.
 2. `+` - Increase brush size.
 3. `-` - Decrease brush size.
