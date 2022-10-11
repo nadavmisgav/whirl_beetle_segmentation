@@ -1,7 +1,8 @@
 # Whirl Beetle Segmentation
-Video segmentation of a whirl beetle and the ripples it creates.
+Few shot video segmentation of a whirl beetle and the ripples it creates.
 ![segmentation_example](./combined_gif_final.gif)
 
+We uploaded pretrained weights in `data/weights/pretrained.h5` that were trained on the following data `our_data.tar.gz`, furthermore an example video is included in `data/videos/example.avi`.
 ## Getting started
 ### Prerequisite
 
@@ -60,7 +61,7 @@ optional arguments:
                         Number of batches to create
 ```
 
-> Note that not many frames are needed for training and this was tested only for the default HEIGHT and WIDTH.
+> Note that not many frames are needed for training as it is a few show implementation. This was tested only for the default HEIGHT and WIDTH.
 
 ### Tagging
 To tag the ripples use our tagging tool `src/tag_data.py`, to use the tool place images to tag inside the `data/tag/data` folder. Run `src/tag_data.py` and use the following keys,
@@ -82,7 +83,17 @@ data/tag
  ### Training
  To train use `src/train_segmentation.py` which accepts a path for the cropped frames and their masks.
  ```text
+usage: train_segmentation.py [-h] [-e EPOCHS] [--lr LR] data_path label_path
 
+positional arguments:
+  data_path             path to cropped frames
+  label_path            path to labels
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -e EPOCHS, --epochs EPOCHS
+                        number of epochs
+  --lr LR               learning rate
  ```
 
  ## Dependencies
