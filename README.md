@@ -2,7 +2,7 @@
 Few shot video segmentation of a whirl beetle and the ripples it creates.
 ![segmentation_example](./combined_gif_final.gif)
 
-We uploaded pretrained weights in `data/weights/pretrained.h5` that were trained on the following data `our_data.tar.gz`, furthermore an example video is included in `data/videos/example.avi`.
+We uploaded pretrained [weights](data/weights/pretrained.h5) that were trained on the following data [our_data](./our_data.tar.gz), furthermore an [example video](./data/videos/example.avi) is included.
 ## Getting started
 ### Prerequisite
 
