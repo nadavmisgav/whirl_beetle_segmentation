@@ -2,3 +2,5 @@ venv/
 __pycache__/
 *.jpg
 *.avi
+*.h5
+!data/weights/pretrained.h5
