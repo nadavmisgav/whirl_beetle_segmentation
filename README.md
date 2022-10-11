@@ -79,3 +79,12 @@ data/tag
 └── tagged   - Images that have been tagged by the script.
 ```
  
+ ### Training
+ To train use `src/train_segmentation.py` which accepts a path for the cropped frames and their masks.
+ ```text
+
+ ```
+
+ ## Dependencies
+ In our work we use,
+ 1. [FgSegNet](https://github.com/lim-anggun/FgSegNet) - found under `lib/FgSegNet`
