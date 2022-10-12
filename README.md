@@ -1,5 +1,5 @@
 # Whirl Beetle Segmentation
-Few shot video segmentation of a whirl beetle and the ripples it creates.
+Few shot video segmentation of a whirl beetle and the waves it creates.
 ![segmentation_example](./combined_gif_final.gif)
 
 We uploaded pretrained [weights](data/weights/pretrained.h5) that were trained on the following data [our_data](./our_data.tar.gz), furthermore an [example video](./data/videos/example.avi) is included.
@@ -64,7 +64,7 @@ optional arguments:
 > Note that not many frames are needed for training as it is a few show implementation. This was tested only for the default HEIGHT and WIDTH.
 
 ### Tagging
-To tag the ripples use our tagging tool `src/tag_data.py`, to use the tool place images to tag inside the `data/tag/data` folder. Run `src/tag_data.py` and use the following keys,
+To tag the waves use our tagging tool `src/tag_data.py`, to use the tool place images to tag inside the `data/tag/data` folder. Run `src/tag_data.py` and use the following keys,
 1. `MOUSE-L` - Draw.
 2. `+` - Increase brush size.
 3. `-` - Decrease brush size.
