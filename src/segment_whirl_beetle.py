@@ -100,10 +100,6 @@ def process_video(video_writer, weight_path, orig_frames, frames, centers, veloc
             green_mask[..., 1] = mask_pred
             green_mask = cv2.cvtColor(green_mask.astype('uint8'), cv2.COLOR_RGB2BGR)
 
-            # # check where the mask should go
-            # from IPython import embed
-            # embed()
-
             if col + MASK_W//2 <= WIDTH: # not padded
                 right_border = MASK_W
             else: # padded
