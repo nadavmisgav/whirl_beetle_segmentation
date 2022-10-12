@@ -98,4 +98,4 @@ optional arguments:
 
  ## Dependencies
  In our work we use,
- 1. [FgSegNet](https://github.com/lim-anggun/FgSegNet) - found under `lib/FgSegNet`
+ 1. [FgSegNet_v2](https://github.com/lim-anggun/FgSegNet_v2) - found under `lib/FgSegNet`
