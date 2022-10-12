@@ -36,7 +36,7 @@ optional arguments:
   --save-eval           Save frames for evaluation
 ```
 
-> Note not the entire video will be processed only the amount of batches specified
+> Note not the entire video will be processed only the amount of batches specified THIS WAS ONLY TESTED FOR UP TO 10s VIDEO.
 
 ## Creating training data
 
