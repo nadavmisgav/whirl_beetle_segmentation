@@ -14,6 +14,7 @@ from pathlib import Path
 
 import numpy as np
 import tensorflow as tf
+from sklearn.model_selection import train_test_split
 
 # set current working directory
 cur_dir = os.getcwd()
@@ -122,8 +123,11 @@ def train(data, mdl_path, vgg_weights_path, max_epoch: int, lr: float):
     
     early = keras.callbacks.EarlyStopping(monitor='val_loss', min_delta=1e-4, patience=10, verbose=1, mode='auto')  
     redu = keras.callbacks.ReduceLROnPlateau(monitor='val_loss', factor=0.1, patience=5, verbose=1, mode='auto')
-    model.fit(data[0], data[1], 
-              validation_split=val_split,
+
+    x_train, x_valid, y_train, y_valid = train_test_split(data[0], data[1], test_size=val_split, shuffle=True)
+
+    model.fit(x_train, y_train, 
+              validation_data=(x_valid, y_valid),
               epochs=max_epoch, batch_size=batch_size, 
               callbacks=[redu, early], verbose=1, class_weight=data[2], shuffle = True)
     
