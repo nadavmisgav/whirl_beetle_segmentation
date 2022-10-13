@@ -1,5 +1,5 @@
 # Whirl Beetle Segmentation
-Few shot video segmentation of a whirl beetle and the waves it creates.
+Few shot video segmentation of a whirl beetle and the waves it creates, the paper can be found [here](./Whirligig_Beetles.pdf).
 ![segmentation_example](./combined_gif_final.gif)
 
 We uploaded pretrained [weights](data/weights/pretrained.h5) that were trained on the following data [our_data](./our_data.tar.gz), furthermore an [example video](./data/videos/example.avi) is included.
